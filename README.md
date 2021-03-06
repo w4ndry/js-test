@@ -1,5 +1,8 @@
 # Asymptotic Analysis Test
 
+## Prerequisite
+a Computer with Node Js installed in it
+
 ## Preparation
 1. Clone the project
 2. Setup the project
