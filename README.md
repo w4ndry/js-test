@@ -1,7 +1,10 @@
 # Asymptotic Analysis Test
 
 ## Overview
-We will develop a simple program, a "Container Class" which is basically a container to store item of product.
+We will develop a simple program, a "Container Class" which is basically a container to store item of product object for example:
+```json
+{productId: '01', qty: 1}
+```
 It will have 3 CRUD method, get, put and delete.
 
 ## Prerequisite

@@ -1,6 +1,10 @@
 class Container {
+  /**
+   * 
+   * Hint, choose proper data type for storing product item
+   */
   constructor(data) {
-    this.storage = data;
+    this.storage = data; 
   }
 
 
