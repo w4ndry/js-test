@@ -8,7 +8,7 @@ class Container {
   }
 
 
-  get(productId = null) {
+  get(productId = null, callback) {
     /**
      * Dont remove this setTimeout, assume there is an I/O delay to get the result of querying the storarage.
      * Offcourse you can modify the code, but the return value must be call inside setTimeout.
@@ -16,6 +16,8 @@ class Container {
     setTimeout(() => {
       const product = this.storage
         .find(product => product.productId === productId);
+
+      callback(product);
       return product;
     }, 1000)
   }
@@ -32,4 +34,3 @@ class Container {
 }
 
 module.exports = Container
-
