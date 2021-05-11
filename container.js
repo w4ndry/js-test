@@ -50,8 +50,19 @@ class Container {
     }, 1000);
   }
 
-  delete(productId) {
+  delete(productId, callback) {
+    setTimeout(() => {
+      this.storage = this.storage.filter(product => product.productId !== productId);
 
+      const product = this.storage.find(product => product.productId === productId);
+
+      if (!product) {
+        callback(true);
+        return true;
+      }
+      callback(true);
+      return true;
+    }, 1000);
   }
 }
 

@@ -63,8 +63,6 @@ describe('Test class container', () => {
     const productId = '01';
     const qty = 2;
     const newProduct = {productId, qty};
-    console.log('newProduct', newProduct);
-    
 
     expect(container).toBeInstanceOf(Container);
     expect(container).toHaveProperty('storage');
@@ -82,7 +80,6 @@ describe('Test class container', () => {
 
     jest.advanceTimersByTime(1000);
 
-    // expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
   });
 
@@ -90,4 +87,27 @@ describe('Test class container', () => {
   /**
   * test container.delete()
   */
+  test('testing method delete', done => {
+    const container = new Container([{productId: '01', qty: 1}, {productId: '02', qty: 3}]);
+    const productId = '01';
+
+    expect(container).toBeInstanceOf(Container);
+    expect(container).toHaveProperty('storage');
+
+    const callback = data => {
+      try {
+        expect(data).toBeTruthy();
+        expect(container.storage).toHaveLength(1);
+        done();
+      } catch (error) {
+        done(error);
+      }
+    }
+
+    container.delete(productId, callback);
+
+    jest.advanceTimersByTime(1000);
+
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
+  });
 });
