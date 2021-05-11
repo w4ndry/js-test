@@ -22,10 +22,32 @@ class Container {
     }, 1000)
   }
 
-  put({ productId, qty }) {
+  put({ productId, qty, callback }) {
     /**
      * Add new item if productId not already exist either way update qty
      */
+    setTimeout(() => {
+      const product = this.storage
+        .find(product => product.productId === productId);
+
+      if (!product) {
+        this.storage = [...this.storage, {productId, qty}]
+      } else {
+        this.storage = this.storage.filter(data => {
+          if (data.productId === productId) {
+            return Object.assign(data, {qty});
+          }
+
+          return data;
+        })
+      }
+
+      const newProduct = this.storage
+        .find(product => product.productId === productId);
+
+      callback(newProduct);
+      return newProduct;
+    }, 1000);
   }
 
   delete(productId) {

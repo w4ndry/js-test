@@ -58,6 +58,33 @@ describe('Test class container', () => {
   * test if we put item of {productId: '01', 1}
   * assert it returning equal to {productId: '01', 1}
   */
+  test('testing method put', done => {
+    const container = new Container([{productId: '01', qty: 1}]);
+    const productId = '01';
+    const qty = 2;
+    const newProduct = {productId, qty};
+    console.log('newProduct', newProduct);
+    
+
+    expect(container).toBeInstanceOf(Container);
+    expect(container).toHaveProperty('storage');
+
+    const callback = data => {
+      try {        
+        expect(data).toMatchObject(newProduct);
+        done();
+      } catch (error) {
+        done(error);
+      }
+    }
+
+    container.put({productId, qty, callback});
+
+    jest.advanceTimersByTime(1000);
+
+    // expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
+  });
 
 
   /**
